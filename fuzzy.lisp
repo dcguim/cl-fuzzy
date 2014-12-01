@@ -25,14 +25,14 @@
 		      (t nil)))
 	     (if (= done 1) (setq new (cons eb new)))nil))))
 			    
-(defun fuzzy-comp(a)
+(defun fuzzy-comp (a)
   (cond ((null a) a)
 	(t (setq new '())
 	   (dolist (e a (reverse new))
 	     (setq rev (- 1 (cadr e)))
 	     (setq new (cons (list (car e) rev) new))))))
 
-(defun fuzzy-height(a)
+(defun fuzzy-height (a)
   (cond ((null a) 0)
 	(t (setq h 0)
 	   (dolist (e a val)
@@ -41,7 +41,7 @@
 		 (setq h val)))
 	   (return-from fuzzy-height h))))
 
-(defun normalized(a)
+(defun normalized (a)
   (cond ((null a) t)
 	(t (setq norm-h nil)
 	   (setq neg-num nil)
@@ -51,8 +51,14 @@
 	     (if (< (cadr e) 0)
 		 (setq neg-num t))
 	     (if (and (equal neg-num nil) (equal norm-h t))
-		 t nil))))
-  
+		 t nil)))))
+
+(defun a-cut (c a)
+  (cond ((null a) a)
+	(t (setq new a)
+	   (dolist (e a new)
+	     (if (< (cadr e) c)
+		 (setq new (remove e new)))))))
 
 	       
 	       

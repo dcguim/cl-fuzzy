@@ -1,11 +1,5 @@
 ## Common Lisp Fuzzy Library
 
-### DONE
-* Implement the simple operations of a fuzzy logic system 
-* Implement function to define if a set if a fuzzy set
+Simple Fuzzy System, hopefully a substitute to what is now used 
+(Matlab`s Fuzzy Logic Toolbox) in the university i go to (PUC-Rio).
 
-## TODO`s
-* Implement the modifiers
-* Implement the subset function
-*
-*

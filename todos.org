@@ -1,0 +1,14 @@
+
+Now
+* DONE Implement simple operators of a fuzzy logic system
+* DONE Implement validation o check if a given set is a fuzzy set
+* DONE Implement a-cut function
+* TODO Implement modifiers
+* TODO Implement subset function
+* TODO Define the concept of a variable
+
+
+Future
+* TODO Use the &rest parameters so the functions won`t be limited to two sets
+* TODO allow the user to choose if the a-cut is strong or not with a -strong parameter
+
