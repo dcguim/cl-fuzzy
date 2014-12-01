@@ -1,6 +1,6 @@
 ## Common Lisp Fuzzy Library
 
-### DONE`s
+### DONE
 * Implement the simple operations of a fuzzy logic system 
 * Implement function to define if a set if a fuzzy set
 
