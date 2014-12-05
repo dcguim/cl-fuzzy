@@ -1,4 +1,6 @@
-;;; example of how to use the operator
+;;; variable that represent the universe of discourse
+(defparameter *universe* nil)
+
 (defun fuzzy-intersect (a b)
 	   (cond ((or (null a) (null b)) nil)
 		 (t (setq new `())
@@ -26,11 +28,13 @@
 	     (if (= done 1) (setq new (cons eb new)))nil))))
 			    
 (defun fuzzy-comp (a)
-  (cond ((null a) a)
-	(t (setq new '())
-	   (dolist (e a (reverse new))
-	     (setq rev (- 1 (cadr e)))
-	     (setq new (cons (list (car e) rev) new))))))
+  (if (null a)
+      (if (equal *universe* nil)
+	  (error "First is necessary to define the universe of discourse with the def-universe function") *universe*)
+      (let ((new '()) (rev nil))
+	(dolist (e a (reverse new))
+	  (setq rev (- 1 (cadr e)))
+	  (setq new (cons (list (car e) rev) new))))))
 
 (defun fuzzy-height (a)
   (cond ((null a) 0)
@@ -62,14 +66,12 @@
 		 (if (< (cadr e) c) (setq new (remove e new))))))))
 
 (defun build-universe(start end)
-	   (if (equal start end) nil
+	   (if (equal start (+ end 1)) nil
 	       (if (> start end) nil
 		   (cons `(,start 1) (build-universe (+ start 1) end)))))
 
 (defun def-universe (start end)
-	   (defparameter *universe* (build-universe start end)))
-
-
+	   (setq *universe* (build-universe start end)))
 
 
 	       
