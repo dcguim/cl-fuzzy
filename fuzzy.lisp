@@ -61,6 +61,13 @@
 		 (if (> (cadr e) c) t (setq new (remove e new)))
 		 (if (< (cadr e) c) (setq new (remove e new))))))))
 
+(defun build-universe(start end)
+	   (if (equal start end) nil
+	       (if (> start end) nil
+		   (cons `(,start 1) (build-universe (+ start 1) end)))))
+
+(defun def-universe (start end)
+	   (defparameter *universe* (build-universe start end)))
 
 
 

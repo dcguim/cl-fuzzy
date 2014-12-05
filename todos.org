@@ -8,6 +8,7 @@ Now
 * TODO Implement more modifiers
 * TODO Expand the system to handle continuous function
 * TODO Study cairo2 and implement some simple graphics 
+* DONE Solve the problem of the undefined domain of discourse
 
 
 
