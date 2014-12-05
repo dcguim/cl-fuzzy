@@ -4,7 +4,7 @@ Now
 * DONE Implement validation o check if a given set is a fuzzy set
 * DONE Implement a-cut function
 * DONE Implement modifiers
-* TODO Apply logic operations and definition to test the code
+* DONE Apply basic logic properties to test the code
 * TODO Implement more modifiers
 * TODO Expand the system to handle continuous function
 * TODO Study cairo2 and implement some simple graphics 
