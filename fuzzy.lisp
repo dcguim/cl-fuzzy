@@ -53,12 +53,17 @@
 	     (if (and (equal neg-num nil) (equal norm-h t))
 		 t nil)))))
 
-(defun a-cut (c a)
+(defun a-cut (c a &optional (strong nil))
   (cond ((null a) a)
 	(t (setq new a)
 	   (dolist (e a new)
-	     (if (< (cadr e) c)
-		 (setq new (remove e new)))))))
+	     (if (equal strong t)
+		 (if (> (cadr e) c) t (setq new (remove e new)))
+		 (if (< (cadr e) c) (setq new (remove e new))))))))
+
+
+
+
 
 	       
 	       
