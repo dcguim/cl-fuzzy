@@ -1,6 +1,20 @@
 ;;; variable that represent the universe of discourse
 (defparameter *universe* nil)
 
+(defclass fuzzy-set ()
+  ((universe :accessor universe
+	     :initarg :uni)
+   (set :accessor set-value
+	:initform '()
+	:initarg :set)
+   (name :accessor set-name
+	 :initarg :name)))
+
+(defmacro make-set (acess set-value set-name)
+    `(defparameter ,acess (make-instance 'fuzzy-set 
+					 :name ,set-name
+					 :set ,set-value)))
+
 (defun fuzzy-intersect (a b)
 	   (cond ((or (null a) (null b)) nil)
 		 (t (setq new `())

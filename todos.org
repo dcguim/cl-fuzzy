@@ -6,6 +6,7 @@ Now
 * DONE Implement modifiers
 * DONE Apply basic logic properties to test the code
 * DONE Reimplment fuzzy-comp operator
+* DONE Implement ASDF for cl-fuzzy
 * TODO Implement more modifiers
 * TODO Expand the system to handle continuous function
 * TODO Study cairo2 and implement some simple graphics 
@@ -17,4 +18,4 @@ Future
 * TODO Use the &rest parameters so the functions won`t be limited to two sets
 * DONE allow the user to choose if the a-cut is strong or not with a -strong parameter
 * TODO Reimplement functions in a more functional style 
-* TODO  Define the fuzzy linguistic variable class using CLOS
+* DONE Define the fuzzy linguistic variable class using CLOS
