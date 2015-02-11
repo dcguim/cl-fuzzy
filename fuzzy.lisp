@@ -10,10 +10,16 @@
    (name :accessor set-name
 	 :initarg :name)))
 
-(defmacro make-set (acess set-value set-name)
-    `(defparameter ,acess (make-instance 'fuzzy-set 
-					 :name ,set-name
-					 :set ,set-value)))
+(defun build-universe (set)
+  (if (null set) nil
+      (cons (caar set) (build-universe (cdr set)))))
+
+ (defmacro instantiate (acess set-value set-name)
+	   `(let ((u (build-universe ,set-value)))
+	     (defparameter ,acess (make-instance 'fuzzy-set 
+						  :name ,set-name
+						  :set ,set-value
+						  :uni u))))
 
 (defun fuzzy-intersect (a b)
 	   (cond ((or (null a) (null b)) nil)
@@ -25,6 +31,21 @@
 				(setq new (cons ea new))
 				(setq new (cons eb new)))
 			    nil))))))
+
+;; abordagem mais funcional
+ (defun fuzzy-intersect-1 (a b)
+	   (if (or (null a) (null b)) nil
+	       (let ((ea (car a)) (eb (car b)))
+		 (if (= (car ea) (car eb))
+		     (if (< (cadr ea)(cadr eb))	 
+			 (cons `(,(car ea) ,(cadr ea))
+			       (fuzzy-intersect-1 (cdr a) (cdr b)))
+			 (cons `(,(car ea) ,(cadr eb))
+				(fuzzy-intersect-1 (cdr a) (cdr b))))		       
+		     (if (> (car ea) (car eb))
+			 (fuzzy-intersect-1 a (cdr b))
+			 (fuzzy-intersect-1 (cdr a) b))))))
+
 
 (defun fuzzy-union (a b)
   (cond ((null a)b) ((null b)a)
@@ -52,12 +73,11 @@
 
 (defun fuzzy-height (a)
   (cond ((null a) 0)
-	(t (setq h 0)
-	   (dolist (e a val)
-	     (setq val (cadr e))
-	     (if (> val h)
-		 (setq h val)))
-	   (return-from fuzzy-height h))))
+	(t (let ((h 0))
+	     (dolist (e a)	      
+	       (if (> (cadr e) h)
+		   (setq h (cadr e))))
+	     (return-from fuzzy-height h)))))
 
 (defun normalized (a)
   (cond ((null a) t)
