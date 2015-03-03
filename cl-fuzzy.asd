@@ -6,5 +6,6 @@
   :author "Dan C. Guim <dcguim@gmail.com>"
   :components ((:file "packages")	       
                (:file "fuzzy" :depends-on ("packages"))
-               (:file "modifiers" :depends-on ("packages"))))
+               (:file "modifiers" :depends-on ("packages"))
+	       (:file "test-fwk" :depends-on ("packages"))))
               
